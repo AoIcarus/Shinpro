@@ -20,9 +20,15 @@ importers:
       highlight.js:
         specifier: 11.9.0
         version: 11.9.0
+      mogodb:
+        specifier: 0.0.1-security
+        version: 0.0.1-security
       mongodb:
         specifier: ^6.8.0
         version: 6.8.0
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@skeletonlabs/skeleton':
         specifier: 2.10.0
@@ -1265,6 +1271,9 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  mogodb@0.0.1-security:
+    resolution: {integrity: sha512-aRrvmRNhrmjOwPAhKI7pWiwHKna8U9BLpruj+dlwocwRrhJXoJ9CNThcVlphh7c4nQiPU0Wj6QsJYLUCS+7Glw==}
+
   mongodb-connection-string-url@3.0.1:
     resolution: {integrity: sha512-XqMGwRX0Lgn05TDB4PyG2h2kKO/FfWJyCzYQbIhXUxz7ETt0I/FqHjUeqj37irJ+Dl1ZtU82uYyj14u2XsZKfg==}
 
@@ -1981,6 +1990,9 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
 snapshots:
 
@@ -3115,6 +3127,8 @@ snapshots:
 
   mkdirp@1.0.4: {}
 
+  mogodb@0.0.1-security: {}
+
   mongodb-connection-string-url@3.0.1:
     dependencies:
       '@types/whatwg-url': 11.0.5
@@ -3790,3 +3804,5 @@ snapshots:
   yaml@2.4.3: {}
 
   yocto-queue@0.1.0: {}
+
+  zod@3.23.8: {}
