@@ -30,18 +30,15 @@ export const getDatabase = (): Db => {
 };
 
 export async function addUser(create: User) {
+	const db = getDatabase();
 
-
-	const db = await getDatabase();
-
-	try{
+	try {
 		const collection = db.collection('users');
 		const { insertedId } = await collection.insertOne(create);
 
 		return insertedId;
-	}
-	catch (error) {
+	} catch (error) {
 		console.error('Error Adding User: ', error);
-		throw error
+		throw error;
 	}
-};
+}
