@@ -71,3 +71,21 @@ export async function getAllUsers() {
 		throw error;
 	}
 }
+
+export async function deleteUser(userId: string) {
+	const db = getDatabase();
+
+	try {
+		const collection = db.collection('users');
+		const result = await collection.deleteOne({ user_id: userId });
+
+		if (result.deletedCount == 0) {
+			return false;
+		}
+
+		return true;
+	} catch (error) {
+		console.error('Error Fetching User: ', error);
+		throw error;
+	}
+}
