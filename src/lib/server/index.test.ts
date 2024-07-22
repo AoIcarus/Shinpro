@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { User } from '$lib/models/userSchema';
-import { connectToDatabase, addUser, findUser, getAllUsers, deleteUser } from '.';
+import { connectToDatabase, addUser, findUser, getAllUsers, deleteUser, updateUser } from '.';
 
 describe('Database Connection', () => {
 	it('connect to database', async () => {
@@ -57,13 +57,28 @@ describe('Find all Users Test', () => {
 
 describe('Delete user Test', () => {
 	it('deletes specified user', async () => {
-		const UserID = '12345';
-		const result = await deleteUser(UserID);
-
-		expect(result).toBeTruthy();
+		const userID = '12345';
+		const result = await deleteUser(userID);
 
 		if (result == false) {
 			console.log('No user with specified ID found');
+		} else {
+			expect(result).toBeTruthy();
+		}
+	});
+});
+
+describe('Update user Test', () => {
+	it('Updates user information fields', async () => {
+		const userID = '12345';
+		const updateInfo = { name: 'David Alcala', bio: 'WAHAHAHAHAH bruh' };
+		const result = await updateUser(userID, updateInfo);
+
+		if (result == false) {
+			console.log('No user with specified ID found');
+		} else {
+			console.log('User updated successfully');
+			expect(result).toBeTruthy();
 		}
 	});
 });

@@ -89,3 +89,21 @@ export async function deleteUser(userId: string) {
 		throw error;
 	}
 }
+
+export async function updateUser(userId: string, updates: Record<string, any>) {
+	const db = getDatabase();
+
+	try {
+		const collection = db.collection('users');
+		const update = await collection.updateOne({ user_id: userId }, { $set: updates });
+
+		if (update.matchedCount == 0) {
+			return false;
+		}
+
+		return true;
+	} catch (error) {
+		console.error('Error Updating User: ', error);
+		throw error;
+	}
+}
