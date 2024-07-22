@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { User } from '$lib/models/userSchema';
-import { connectToDatabase, addUser } from '.';
+import { connectToDatabase, addUser, findUser, getAllUsers } from '.';
 
 describe('Database Connection', () => {
 	it('connect to database', async () => {
@@ -22,5 +22,35 @@ describe('Add User Test', () => {
 
 		const userID = await addUser(user);
 		expect(userID).toBeTruthy();
+	});
+});
+
+describe('Find User Test', () => {
+	it('Finding a user', async () => {
+		const userID = '65432';
+		const foundUser = await findUser(userID);
+
+		if (foundUser) {
+			console.log('User Found: ', foundUser);
+			expect(foundUser.user_id).toBe(userID);
+			//expect(foundUser.user_id).not.to.equal(userID);
+		} else {
+			console.log('No user found');
+			expect(foundUser).toBeNull;
+		}
+	});
+});
+
+describe('Find all Users Test', () => {
+	it('gets all current users', async () => {
+		const all_users = await getAllUsers();
+
+		if (all_users && all_users.length > 0) {
+			console.log('All current users: ', all_users);
+			expect(all_users).toBeDefined();
+		} else {
+			console.log('Error');
+			expect(all_users).toBeNull();
+		}
 	});
 });

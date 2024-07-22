@@ -1,5 +1,6 @@
 import type { User } from '$lib/models/userSchema';
-import { MongoClient, Db } from 'mongodb';
+import { MongoClient, Db, ObjectId } from 'mongodb';
+import { string } from 'zod';
 import errorMap from 'zod/locales/en.js';
 
 const url =
@@ -39,6 +40,34 @@ export async function addUser(create: User) {
 		return insertedId;
 	} catch (error) {
 		console.error('Error Adding User: ', error);
+		throw error;
+	}
+}
+
+export async function findUser(userId: string) {
+	const db = getDatabase();
+
+	try {
+		const collection = db.collection('users');
+		const user = await collection.findOne({ user_id: userId });
+
+		return user;
+	} catch (error) {
+		console.error('Error Fetching User: ', error);
+		throw error;
+	}
+}
+
+export async function getAllUsers() {
+	const db = getDatabase();
+
+	try {
+		const collection = db.collection('users');
+		const users = await collection.find({}).toArray();
+
+		return users;
+	} catch (error) {
+		console.error('Error Fetching User: ', error);
 		throw error;
 	}
 }
